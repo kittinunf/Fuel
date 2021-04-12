@@ -153,6 +153,16 @@ class FuelManager : RequestFactory, RequestFactory.Convenience {
         return applyOptions(request).upload()
     }
 
+    /**
+     * Make an upload request using from [convertible]
+     *
+     * @param convertible [RequestConvertible] the instance that can be turned into a [Request]
+     * @return [UploadRequest] the request (extended for upload)
+     */
+    override fun upload(convertible: RequestConvertible): UploadRequest {
+        return applyOptions(convertible.request).upload()
+    }
+
     fun addRequestInterceptor(interceptor: FoldableRequestInterceptor): FuelManager {
         requestInterceptors += interceptor
         return this

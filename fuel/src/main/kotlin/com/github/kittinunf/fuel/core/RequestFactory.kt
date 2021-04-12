@@ -99,6 +99,14 @@ interface RequestFactory {
         fun upload(path: String, method: Method = Method.POST, parameters: Parameters? = null): UploadRequest
 
         /**
+         * Make an upload request using from [convertible]
+         *
+         * @param convertible [RequestConvertible] the instance that can be turned into a [Request]
+         * @return [UploadRequest] the request (extended for upload)
+         */
+        fun upload(convertible: RequestConvertible): UploadRequest
+
+            /**
          * Create a [Method.GET] [Request] to [path] with [parameters]
          *
          * @param path [String] the absolute or relative to [FuelManager.instance]' base-path path

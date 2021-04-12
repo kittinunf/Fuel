@@ -1,5 +1,6 @@
 package com.github.kittinunf.fuel.core.requests
 
+import com.github.kittinunf.fuel.RequestTest
 import com.github.kittinunf.fuel.core.BlobDataPart
 import com.github.kittinunf.fuel.core.FileDataPart
 import com.github.kittinunf.fuel.core.FuelManager
@@ -147,6 +148,23 @@ class UploadRequestTest : MockHttpTestCase() {
         val (data, _) = result
         assertThat(data!!.body!!.string, containsString("name=\"foo\""))
         assertThat(data.body!!.string, containsString("bar"))
+    }
+
+    @Test
+    fun uploadFileWithRequestConvertible() {
+        val manager = FuelManager()
+
+        mock.chain(
+            request = mock.request().withMethod(Method.GET.value).withPath("/upload"),
+            response = mock.reflect()
+        )
+
+        val file = File(currentDir, "lorem_ipsum_long.tmp")
+        val triple = manager.upload(RequestTest.RequestConvertibleImpl(Method.GET, mock.path("upload")))
+            .add(FileDataPart(file))
+            .responseObject(MockReflected.Deserializer())
+
+        assertFileUploaded(file, triple)
     }
 
     @Test
