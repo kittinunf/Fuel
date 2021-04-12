@@ -9,6 +9,7 @@ import com.github.kittinunf.fuel.core.Method
 import com.github.kittinunf.fuel.core.Request
 import com.github.kittinunf.fuel.core.Response
 import com.github.kittinunf.fuel.core.requests.DefaultBody
+import com.github.kittinunf.fuel.core.requests.UploadRequest
 import com.github.kittinunf.fuel.core.requests.isCancelled
 import com.github.kittinunf.fuel.toolbox.extensions.forceMethod
 import com.github.kittinunf.fuel.util.ProgressInputStream
@@ -243,12 +244,14 @@ class HttpClient(
         }
 
         val contentLength = body.length
-        if (contentLength != null && contentLength != -1L) {
-            // The content has a known length, so no need to chunk
-            connection.setFixedLengthStreamingMode(contentLength.toLong())
-        } else {
-            // The content doesn't have a known length, so turn it into chunked
-            connection.setChunkedStreamingMode(4096)
+        if (request is UploadRequest) {
+            if (contentLength != null && contentLength != -1L) {
+                // The content has a known length, so no need to chunk
+                connection.setFixedLengthStreamingMode(contentLength.toLong())
+            } else {
+                // The content doesn't have a known length, so turn it into chunked
+                connection.setChunkedStreamingMode(4096)
+            }
         }
 
         val noProgressHandler = request.executionOptions.requestProgress.isNotSet()
