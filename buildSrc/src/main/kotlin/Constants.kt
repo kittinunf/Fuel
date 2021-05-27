@@ -73,150 +73,118 @@ object Fuel {
     }
 }
 
-// Core dependencies
-object Kotlin {
-    const val version = "1.4.10"
-    const val stdlib = "org.jetbrains.kotlin:kotlin-stdlib:$version"
-    const val plugin = "kotlin"
-    const val androidPlugin = "kotlin-android"
-    const val androidExtensionsPlugin = "kotlin-android-extensions"
-}
-
 object Result {
-    const val version = "3.1.0"
-    const val dependency = "com.github.kittinunf.result:result:$version"
+    const val dependency = "com.github.kittinunf.result:result:_"
 }
 
 object Json {
-    const val version = "20200518"
-    const val dependency = "org.json:json:$version"
+    const val dependency = "org.json:json:_"
 }
 
 object Android {
-    const val version = "3.4.0"
     const val appPlugin = "com.android.application"
     const val libPlugin = "com.android.library"
 
     object Arch {
-        const val version = "1.1.1"
-        const val testingCore = "android.arch.core:core-testing:$version"
+        const val testingCore = "android.arch.core:core-testing:_"
     }
 }
 
-object AndroidX {
-    val annotation = "androidx.annotation:annotation:1.0.0"
-    val appCompat = "androidx.appcompat:appcompat:1.0.2"
+object Androidx {
+    val annotation = "androidx.annotation:annotation:_"
+    val appCompat = "androidx.appcompat:appcompat:_"
 
     object Arch {
-        const val version = "2.0.0"
-        const val extensions = "androidx.lifecycle:lifecycle-extensions:$version"
+        const val extensions = "androidx.lifecycle:lifecycle-extensions:_"
     }
 
     object Espresso {
-        const val version = "3.1.0"
-        const val core = "androidx.test.espresso:espresso-core:$version"
-        const val intents = "androidx.test.espresso:espresso-intents:$version"
+        const val core = "androidx.test.espresso:espresso-core:_"
+        const val intents = "androidx.test.espresso:espresso-intents:_"
     }
 
     // Testing dependencies
     object Test {
-        const val rulesVersion = "1.1.0"
-        const val junitVersion = "1.0.0"
-        const val rules = "androidx.test:rules:$rulesVersion"
-        const val junit = "androidx.test.ext:junit:$junitVersion"
+        const val rules = "androidx.test:rules:_"
+        const val junit = "androidx.test.ext:junit:_"
     }
 }
 
 // Modules dependencies
 object Forge {
-    const val version = "1.0.0-alpha3"
-    const val dependency = "com.github.kittinunf.forge:forge:$version"
+    const val dependency = "com.github.kittinunf.forge:forge:_"
 }
 
 object Gson {
-    const val version = "2.8.6"
-    const val dependency = "com.google.code.gson:gson:$version"
+    const val dependency = "com.google.code.gson:gson:_"
 }
 
 object Jackson {
-    const val version = "2.11.2"
-    const val dependency = "com.fasterxml.jackson.module:jackson-module-kotlin:$version"
+    const val dependency = "com.fasterxml.jackson.module:jackson-module-kotlin:_"
 }
 
-object KotlinX {
+object Kotlinx {
     object Coroutines {
-        const val version = "1.3.9"
-        val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:$version"
-        val jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core:$version"
+        val android = "org.jetbrains.kotlinx:kotlinx-coroutines-android:_"
+        val jvm = "org.jetbrains.kotlinx:kotlinx-coroutines-core:_"
     }
 
     object Serialization {
-        const val version = "1.0.1"
         const val plugin = "kotlinx-serialization"
 
-        const val dependency = "org.jetbrains.kotlinx:kotlinx-serialization-core:$version"
+        const val dependency = "org.jetbrains.kotlinx:kotlinx-serialization-core:_"
 
         object Json {
-            const val dependency = "org.jetbrains.kotlinx:kotlinx-serialization-json:$version"
+            const val dependency = "org.jetbrains.kotlinx:kotlinx-serialization-json:_"
         }
     }
 }
 
 object Moshi {
-    const val version = "1.10.0"
-    const val dependency = "com.squareup.moshi:moshi:$version"
+    const val dependency = "com.squareup.moshi:moshi:_"
 
-    const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:$version"
+    const val codegen = "com.squareup.moshi:moshi-kotlin-codegen:_"
 }
 
 object Reactor {
-    const val version = "3.2.8.RELEASE"
-    const val core = "io.projectreactor:reactor-core:$version"
-    const val test = "io.projectreactor:reactor-test:$version"
+    const val core = "io.projectreactor:reactor-core:_"
+    const val test = "io.projectreactor:reactor-test:_"
 }
 
 object RxJava {
     object Jvm {
-        const val version = "2.2.19"
-        const val dependency = "io.reactivex.rxjava2:rxjava:$version"
+        const val dependency = "io.reactivex.rxjava2:rxjava:_"
     }
 
     object Android {
-        const val version = "2.1.0"
-        const val dependency = "io.reactivex.rxjava2:rxandroid:$version"
+        const val dependency = "io.reactivex.rxjava2:rxandroid:_"
     }
 }
 
 // Lint
 object Ktlint {
-    const val version = "1.24.0"
     const val plugin = "org.jmailen.kotlinter"
 }
 
 // Testing dependencies
 object JUnit {
-    const val version = "4.12"
-    const val dependency = "junit:junit:$version"
+    const val dependency = "junit:junit:_"
 }
 
 object MockServer {
-    const val version = "5.4.1"
-    const val dependency = "org.mock-server:mockserver-netty:$version"
+    const val dependency = "org.mock-server:mockserver-netty:_"
 }
 
 object Jacoco {
-    const val version = "0.8.4"
     const val plugin = "jacoco"
 
     object Android {
-        const val version = "0.1.4"
         const val plugin = "jacoco-android"
     }
 }
 
 object RoboElectric {
-    const val version = "4.3.1"
-    const val dependency = "org.robolectric:robolectric:$version"
+    const val dependency = "org.robolectric:robolectric:_"
 }
 
 object Release {
@@ -225,16 +193,14 @@ object Release {
     }
 
     object Bintray {
-        const val version = "1.8.4"
         const val plugin = "com.jfrog.bintray"
     }
 }
 
 object Stetho {
-    const val version = "1.5.1"
-    const val dependency = "com.facebook.stetho:stetho:$version"
+    const val dependency = "com.facebook.stetho:stetho:_"
 
     object StethoUrlConnection {
-        const val dependency = "com.facebook.stetho:stetho-urlconnection:$version"
+        const val dependency = "com.facebook.stetho:stetho-urlconnection:_"
     }
 }

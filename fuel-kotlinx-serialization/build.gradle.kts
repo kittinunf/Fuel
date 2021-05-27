@@ -1,5 +1,6 @@
 plugins {
-    id(KotlinX.Serialization.plugin)
+    kotlin("jvm") apply false
+    id(Kotlinx.Serialization.plugin)
 }
 
 repositories {
@@ -9,7 +10,7 @@ repositories {
 dependencies {
     api(project(Fuel.name))
 
-    implementation(KotlinX.Serialization.Json.dependency)
+    implementation(KotlinX.serialization.json)
 
     testImplementation(project(Fuel.Test.name))
 }

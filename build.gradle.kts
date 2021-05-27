@@ -1,6 +1,6 @@
 import com.android.build.gradle.BaseExtension
-import com.dicedmelon.gradle.jacoco.android.JacocoAndroidUnitTestReportExtension
 import com.jfrog.bintray.gradle.BintrayExtension.GpgConfig
+import de.fayard.refreshVersions.core.versionFor
 import org.gradle.api.publish.maven.MavenPom
 import org.jmailen.gradle.kotlinter.KotlinterExtension
 import org.jmailen.gradle.kotlinter.support.ReporterType
@@ -8,14 +8,14 @@ import org.jmailen.gradle.kotlinter.tasks.LintTask
 
 plugins {
     java
-    kotlin("jvm") version Kotlin.version apply false
-    id(Android.libPlugin) version Android.version apply false
-    id(Jacoco.Android.plugin) version Jacoco.Android.version apply false
-    id(KotlinX.Serialization.plugin) version Kotlin.version apply false
-    id(Ktlint.plugin) version Ktlint.version apply false
+    kotlin("jvm") apply false
+    id(Android.libPlugin)  apply false
+    //id(Jacoco.Android.plugin) apply false
+    id("org.jetbrains.kotlin.plugin.serialization") apply false
+    id(Ktlint.plugin) apply false
 
     `maven-publish`
-    id(Release.Bintray.plugin) version Release.Bintray.version
+    id(Release.Bintray.plugin)
 }
 
 allprojects {
@@ -39,12 +39,12 @@ subprojects {
 
     if (isJvmModule) {
         apply {
-            plugin(Kotlin.plugin)
+            plugin("org.jetbrains.kotlin.jvm")
             plugin(Jacoco.plugin)
         }
 
         configure<JacocoPluginExtension> {
-            toolVersion = Jacoco.version
+            toolVersion = versionFor("version.jacoco")
         }
 
         configure<JavaPluginConvention> {
@@ -79,9 +79,9 @@ subprojects {
     if (isAndroidModule) {
         apply {
             plugin(Android.libPlugin)
-            plugin(Kotlin.androidPlugin)
-            plugin(Kotlin.androidExtensionsPlugin)
-            plugin(Jacoco.Android.plugin)
+            plugin("org.jetbrains.kotlin.android")
+            plugin("org.jetbrains.kotlin.android.extensions")
+            //plugin(Jacoco.Android.plugin)
         }
 
         configure<BaseExtension> {
@@ -132,11 +132,13 @@ subprojects {
             }
         }
 
+        /**
         configure<JacocoAndroidUnitTestReportExtension> {
             csv.enabled(false)
             html.enabled(true)
             xml.enabled(true)
         }
+        **/
     }
 
     if (!isSample) {
@@ -163,7 +165,7 @@ subprojects {
         }
 
         dependencies {
-            implementation(Kotlin.stdlib)
+            implementation(Kotlin.stdlib.jdk7)
 
             testImplementation(JUnit.dependency)
         }

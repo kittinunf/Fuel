@@ -7,34 +7,39 @@ pluginManagement {
     }
     resolutionStrategy {
         eachPlugin {
-            if (requested.id.id == Android.libPlugin) {
+            if (requested.id.id == "com.android.library") {
                 useModule("com.android.tools.build:gradle:${requested.version}")
             }
-            if (requested.id.id == Jacoco.Android.plugin) {
+            if (requested.id.id == "jacoco-android") {
                 useModule("com.dicedmelon.gradle:jacoco-android:${requested.version}")
             }
-            if (requested.id.id == KotlinX.Serialization.plugin) {
+            if (requested.id.id == "kotlinx-serialization") {
                 useModule("org.jetbrains.kotlin:kotlin-serialization:${requested.version}")
             }
         }
     }
 }
 
+plugins {
+    // See https://jmfayard.github.io/refreshVersions
+    id("de.fayard.refreshVersions") version "0.10.0"
+}
+
 val projects = listOf(
-        Fuel.name,
-        Fuel.Android.name,
-        Fuel.Coroutines.name,
-        Fuel.Forge.name,
-        Fuel.Gson.name,
-        Fuel.Jackson.name,
-        Fuel.Json.name,
-        Fuel.KotlinSerialization.name,
-        Fuel.LiveData.name,
-        Fuel.Moshi.name,
-        Fuel.Reactor.name,
-        Fuel.RxJava.name,
-        Fuel.Stetho.name,
-        Fuel.Test.name
+    ":fuel",
+    ":fuel-android",
+    ":fuel-coroutines",
+    ":fuel-forge",
+    ":fuel-gson",
+    ":fuel-jackson",
+    ":fuel-json",
+    ":fuel-kotlinx-serialization",
+    ":fuel-livedata",
+    ":fuel-moshi",
+    ":fuel-reactor",
+    ":fuel-rxjava",
+    ":fuel-stetho",
+    ":fuel-test"
 )
 
 include(*(projects.toTypedArray()))
